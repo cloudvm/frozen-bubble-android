@@ -47,46 +47,23 @@
  *          [[ http://www.frozen-bubble.org/   ]]
  */
 
-package org.jfedor.frozenbubble;
+package com.voxel.frozenbubble;
 
-import android.graphics.Canvas;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.os.Bundle;
-import java.util.Vector;
+import android.graphics.Bitmap;
 
-public class ImageSprite extends Sprite
-{
-  private BmpWrap displayedImage;
-
-  public ImageSprite(Rect area, BmpWrap img)
+// Various classes take arguments of this type during construction.  We need
+// one level of indirection in case we want to swap the images from under them
+// (e.g., to resize them when the surface resolution changes.)  We couldn't
+// do it if references to Bitmap were kept directly everywhere since you can't
+// overwrite an Android Bitmap in place (or at least I haven't found how to
+// do it.)
+class BmpWrap {
+  BmpWrap(int id)
   {
-    super(area);
-
-    this.displayedImage = img;
+    this.id = id;
   }
 
-  public void saveState(Bundle map, Vector savedSprites) {
-    if (getSavedId() != -1) {
-      return;
-    }
-    super.saveState(map, savedSprites);
-    map.putInt(String.format("%d-imageId", getSavedId()), displayedImage.id);
-  }
-
-  public int getTypeId()
-  {
-    return Sprite.TYPE_IMAGE;
-  }
-
-  public void changeImage(BmpWrap img)
-  {
-    this.displayedImage = img;
-  }
-
-  public final void paint(Canvas c, double scale, int dx, int dy)
-  {
-    Point p = super.getSpritePosition();
-    drawImage(displayedImage, p.x, p.y, c, scale, dx, dy);
-  }
+  public Bitmap bmp;
+  // Image id used for saving and restoring the image sprites.
+  public int id;
 }

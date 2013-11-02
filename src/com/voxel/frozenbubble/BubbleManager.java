@@ -47,7 +47,7 @@
  *          [[ http://www.frozen-bubble.org/   ]]
  */
 
-package org.jfedor.frozenbubble;
+package com.voxel.frozenbubble;
 
 import java.util.Random;
 import android.os.Bundle;

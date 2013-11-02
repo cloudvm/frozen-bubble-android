@@ -66,7 +66,7 @@
  */
 
 
-package org.jfedor.frozenbubble;
+package com.voxel.frozenbubble;
 
 import java.io.InputStream;
 import java.io.IOException;
@@ -91,6 +91,10 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.MotionEvent;
 import java.util.Vector;
+
+import com.voxel.frozenbubble.R;
+
+import com.voxel.sdk.VoxelAd;
 
 import android.util.Log;
 
@@ -750,6 +754,15 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
                                      mHurry, mPenguins, mCompressorHead,
                                      mCompressor, mLauncher, mSoundManager,
                                      mLevelManager);
+
+        FrozenBubble activity = (FrozenBubble) mContext;
+        activity.runOnUiThread(new Runnable() {
+      	  public void run() {
+      		  VoxelAd.sharedVoxelAd().showInterstitial();
+      	  }
+      	});
+        
+
       }
       mWasLeft = false;
       mWasRight = false;
@@ -758,6 +771,7 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
       mTrackballDX = 0;
       mTouchFire = false;
       mTouchDX = 0;
+      
     }
 
     public void cleanUp() {

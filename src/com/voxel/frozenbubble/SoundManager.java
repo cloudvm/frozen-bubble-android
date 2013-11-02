@@ -47,7 +47,9 @@
  *          [[ http://www.frozen-bubble.org/   ]]
  */
 
-package org.jfedor.frozenbubble;
+package com.voxel.frozenbubble;
+
+import com.voxel.frozenbubble.R;
 
 import android.content.Context;
 import android.media.AudioManager;

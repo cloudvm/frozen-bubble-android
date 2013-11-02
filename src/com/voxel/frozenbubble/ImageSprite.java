@@ -47,71 +47,46 @@
  *          [[ http://www.frozen-bubble.org/   ]]
  */
 
-package org.jfedor.frozenbubble;
+package com.voxel.frozenbubble;
 
-import java.util.Vector;
 import android.graphics.Canvas;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.os.Bundle;
+import java.util.Vector;
 
-public abstract class GameScreen
+public class ImageSprite extends Sprite
 {
-  private Vector sprites;
+  private BmpWrap displayedImage;
 
-  public final void saveSprites(Bundle map, Vector savedSprites)
+  public ImageSprite(Rect area, BmpWrap img)
   {
-    for (int i = 0; i < sprites.size(); i++) {
-      ((Sprite)sprites.elementAt(i)).saveState(map, savedSprites);
-      map.putInt(String.format("game-%d", i),
-                 ((Sprite)sprites.elementAt(i)).getSavedId());
+    super(area);
+
+    this.displayedImage = img;
+  }
+
+  public void saveState(Bundle map, Vector savedSprites) {
+    if (getSavedId() != -1) {
+      return;
     }
-    map.putInt("numGameSprites", sprites.size());
+    super.saveState(map, savedSprites);
+    map.putInt(String.format("%d-imageId", getSavedId()), displayedImage.id);
   }
 
-  public final void restoreSprites(Bundle map, Vector savedSprites)
+  public int getTypeId()
   {
-    sprites = new Vector();
-    int numSprites = map.getInt("numGameSprites");
-    for (int i = 0; i < numSprites; i++) {
-      int spriteIdx = map.getInt(String.format("game-%d", i));
-      sprites.addElement(savedSprites.elementAt(spriteIdx));
-    }
+    return Sprite.TYPE_IMAGE;
   }
 
-  public GameScreen()
+  public void changeImage(BmpWrap img)
   {
-    sprites = new Vector();
+    this.displayedImage = img;
   }
 
-  public final void addSprite(Sprite sprite)
+  public final void paint(Canvas c, double scale, int dx, int dy)
   {
-    sprites.removeElement(sprite);
-    sprites.addElement(sprite);
+    Point p = super.getSpritePosition();
+    drawImage(displayedImage, p.x, p.y, c, scale, dx, dy);
   }
-
-  public final void removeSprite(Sprite sprite)
-  {
-    sprites.removeElement(sprite);
-  }
-
-  public final void spriteToBack(Sprite sprite)
-  {
-    sprites.removeElement(sprite);
-    sprites.insertElementAt(sprite,0);
-  }
-
-  public final void spriteToFront(Sprite sprite)
-  {
-    sprites.removeElement(sprite);
-    sprites.addElement(sprite);
-  }
-
-  public void paint(Canvas c, double scale, int dx, int dy) {
-    for (int i = 0; i < sprites.size(); i++) {
-      ((Sprite)sprites.elementAt(i)).paint(c, scale, dx, dy);
-    }
-  }
-
-  public abstract boolean play(boolean key_left, boolean key_right,
-                               boolean key_fire, double trackball_dx,
-                               double touch_dx);
 }

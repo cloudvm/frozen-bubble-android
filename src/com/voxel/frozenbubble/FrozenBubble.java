@@ -65,7 +65,7 @@
  * limitations under the License.
  */
 
-package org.jfedor.frozenbubble;
+package com.voxel.frozenbubble;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -80,10 +80,11 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
-import android.util.Log;
+import com.voxel.frozenbubble.R;
 
-import org.jfedor.frozenbubble.GameView;
-import org.jfedor.frozenbubble.GameView.GameThread;
+import com.voxel.frozenbubble.GameView;
+import com.voxel.frozenbubble.GameView.GameThread;
+import com.voxel.sdk.VoxelAd;
 
 public class FrozenBubble extends Activity
 {
@@ -126,6 +127,8 @@ public class FrozenBubble extends Activity
   
   private static final String EDITORACTION = "org.jfedor.frozenbubble.GAME";
   private boolean activityCustomStarted = false;
+  
+  public VoxelAd voxelAd;
 
   @Override
   public boolean onCreateOptionsMenu(Menu menu)
@@ -192,7 +195,8 @@ public class FrozenBubble extends Activity
       setSoundOn(false);
       return true;
     case MENU_ABOUT:
-      mGameView.getThread().setState(GameView.GameThread.STATE_ABOUT);
+      this.voxelAd.showInterstitial();
+      //mGameView.getThread().setState(GameView.GameThread.STATE_ABOUT);
       return true;
     case MENU_DONT_RUSH_ME:
       setDontRushMe(true);
@@ -263,6 +267,9 @@ public class FrozenBubble extends Activity
     super.onCreate(savedInstanceState);
     requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+    this.voxelAd = VoxelAd.sharedVoxelAd();
+    this.voxelAd.onCreate(this, "36c533d3-025a-4a4d-8cac-79616e2e3779", "f6cdd168-8b65-4000-9f2d-1547e57451ba");
+    
     // Allow editor functionalities.
     Intent i = getIntent();
     if (null == i || null == i.getExtras() ||
