@@ -755,12 +755,12 @@ class GameView extends SurfaceView implements SurfaceHolder.Callback {
                                      mCompressor, mLauncher, mSoundManager,
                                      mLevelManager);
 
-        FrozenBubble activity = (FrozenBubble) mContext;
-        activity.runOnUiThread(new Runnable() {
-      	  public void run() {
-      		  VoxelAd.sharedVoxelAd().showInterstitial();
-      	  }
-      	});
+//        FrozenBubble activity = (FrozenBubble) mContext;
+//        activity.runOnUiThread(new Runnable() {
+//      	  public void run() {
+//      		  VoxelAd.sharedVoxelAd().showInterstitial();
+//      	  }
+//      	});
         
 
       }

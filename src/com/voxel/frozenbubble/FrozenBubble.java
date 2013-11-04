@@ -299,6 +299,8 @@ public class FrozenBubble extends Activity
     }
     mGameView.requestFocus();
     setFullscreen();
+
+    this.voxelAd.showInterstitial();
   }
 
   /**
