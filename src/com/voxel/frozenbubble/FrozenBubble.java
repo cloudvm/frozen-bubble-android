@@ -84,7 +84,7 @@ import com.voxel.frozenbubble.R;
 
 import com.voxel.frozenbubble.GameView;
 import com.voxel.frozenbubble.GameView.GameThread;
-import com.voxel.sdk.VoxelAd;
+import com.voxel.sdk.ad.VoxelAd;
 
 public class FrozenBubble extends Activity
 {

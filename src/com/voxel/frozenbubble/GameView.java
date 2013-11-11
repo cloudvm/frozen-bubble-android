@@ -94,7 +94,7 @@ import java.util.Vector;
 
 import com.voxel.frozenbubble.R;
 
-import com.voxel.sdk.VoxelAd;
+import com.voxel.sdk.ad.VoxelAd;
 
 import android.util.Log;
 
