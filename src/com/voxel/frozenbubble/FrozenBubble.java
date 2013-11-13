@@ -128,8 +128,8 @@ public class FrozenBubble extends Activity
 
 	public VoxelAd voxelAd;
 	static {
-		VoxelSDK.initialize("36c533d3-025a-4a4d-8cac-79616e2e3779",
-				"f6cdd168-8b65-4000-9f2d-1547e57451ba");
+		VoxelSDK.initialize("5ae1a192-6285-4d74-918e-67e8aa7f9e1a",
+				"c99c2b47-9f7e-4e9c-8502-68f383c95445");
 	}
 
 	@Override
