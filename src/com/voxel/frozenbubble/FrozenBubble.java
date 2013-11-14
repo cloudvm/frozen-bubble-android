@@ -82,7 +82,6 @@ import android.widget.Toast;
 
 import com.voxel.frozenbubble.GameView.GameThread;
 import com.voxel.sdk.VoxelSDK;
-import com.voxel.sdk.ad.VoxelAd;
 
 public class FrozenBubble extends Activity
 {
@@ -126,7 +125,6 @@ public class FrozenBubble extends Activity
 	private static final String EDITORACTION = "org.jfedor.frozenbubble.GAME";
 	private boolean activityCustomStarted = false;
 
-	public VoxelAd voxelAd;
 	static {
 		VoxelSDK.initialize("5ae1a192-6285-4d74-918e-67e8aa7f9e1a",
 				"c99c2b47-9f7e-4e9c-8502-68f383c95445");
@@ -197,7 +195,7 @@ public class FrozenBubble extends Activity
 			setSoundOn(false);
 			return true;
 		case MENU_ABOUT:
-			this.voxelAd.showInterstitial();
+			VoxelSDK.showTestInterstitial(this);
 			//mGameView.getThread().setState(GameView.GameThread.STATE_ABOUT);
 			return true;
 		case MENU_DONT_RUSH_ME:
@@ -269,9 +267,6 @@ public class FrozenBubble extends Activity
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-		this.voxelAd = VoxelAd.sharedVoxelAd();
-		this.voxelAd.onCreate(this);
-
 		// Allow editor functionalities.
 		Intent i = getIntent();
 		if (null == i || null == i.getExtras() ||
@@ -302,7 +297,7 @@ public class FrozenBubble extends Activity
 		mGameView.requestFocus();
 		setFullscreen();
 
-		this.voxelAd.showInterstitial();
+		VoxelSDK.showTestInterstitial(this);
 	}
 
 	/**
