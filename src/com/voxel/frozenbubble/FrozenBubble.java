@@ -82,6 +82,7 @@ import android.widget.Toast;
 
 import com.voxel.frozenbubble.GameView.GameThread;
 import com.voxel.sdk.VoxelSDK;
+import com.voxel.sdk.ad.VoxelPreInterstitialDialog;
 
 public class FrozenBubble extends Activity
 {
@@ -195,7 +196,7 @@ public class FrozenBubble extends Activity
 			setSoundOn(false);
 			return true;
 		case MENU_ABOUT:
-			VoxelSDK.showTestInterstitial(this);
+			showTestInterstitial(this);
 			//mGameView.getThread().setState(GameView.GameThread.STATE_ABOUT);
 			return true;
 		case MENU_DONT_RUSH_ME:
@@ -297,7 +298,7 @@ public class FrozenBubble extends Activity
 		mGameView.requestFocus();
 		setFullscreen();
 
-		VoxelSDK.showTestInterstitial(this);
+		showTestInterstitial(this);
 	}
 
 	/**
@@ -421,5 +422,13 @@ public class FrozenBubble extends Activity
 				}
 			}
 		}
+	}
+
+	public void showTestInterstitial(Context context) {
+		VoxelPreInterstitialDialog dialog = new VoxelPreInterstitialDialog(
+				context);
+		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+		dialog.setup(R.drawable.subway, "Subway Surfer");
+		dialog.show();
 	}
 }
