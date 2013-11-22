@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="android_rules" default="debug">
+<project name="frozen_bubble" default="debug">
 
     <!--
         This build file is imported by the project build file. It contains
