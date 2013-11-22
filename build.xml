@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="frozen_bubble" default="debug">
+<project name="android_rules" default="debug">
 
     <!--
         This build file is imported by the project build file. It contains
@@ -143,7 +143,6 @@
     <!-- Output directories -->
     <property name="out.dir" value="bin" />
     <property name="out.absolute.dir" location="${out.dir}" />
-    <property name="out.build.dir" location="../build" />
     <property name="out.classes.absolute.dir" location="${out.dir}/classes" />
     <property name="out.res.absolute.dir" location="${out.dir}/res" />
     <property name="out.rs.obj.absolute.dir" location="${out.dir}/rsObj" />
@@ -553,7 +552,6 @@
         <mkdir dir="${resource.absolute.dir}" />
         <mkdir dir="${jar.libs.absolute.dir}" />
         <mkdir dir="${out.absolute.dir}" />
-        <mkdir dir="${out.build.dir}" />
         <mkdir dir="${out.res.absolute.dir}" />
         <mkdir dir="${out.rs.obj.absolute.dir}" />
         <mkdir dir="${out.rs.libs.absolute.dir}" />
@@ -994,8 +992,8 @@
 
     <target name="-set-debug-files" depends="-set-mode-check">
 
-        <property name="out.packaged.file" location="${out.build.dir}/${ant.project.name}-debug-unaligned.apk" />
-        <property name="out.final.file" location="${out.build.dir}/${ant.project.name}-debug.apk" />
+        <property name="out.packaged.file" location="${out.absolute.dir}/${ant.project.name}-debug-unaligned.apk" />
+        <property name="out.final.file" location="${out.absolute.dir}/${ant.project.name}-debug.apk" />
         <property name="build.is.mode.set" value="true" />
     </target>
 
@@ -1102,8 +1100,8 @@
     </target>
 
     <target name="-set-release-mode" depends="-set-mode-check">
-        <property name="out.packaged.file" location="${out.build.dir}/${ant.project.name}-release-unsigned.apk" />
-        <property name="out.final.file" location="${out.build.dir}/${ant.project.name}-release.apk" />
+        <property name="out.packaged.file" location="${out.absolute.dir}/${ant.project.name}-release-unsigned.apk" />
+        <property name="out.final.file" location="${out.absolute.dir}/${ant.project.name}-release.apk" />
         <property name="build.is.mode.set" value="true" />
 
         <!-- record the current build target -->
@@ -1142,7 +1140,7 @@
         <!-- only create apk if *not* a library project -->
         <do-only-if-not-library elseText="Library project: do not create apk..." >
             <sequential>
-                <property name="out.unaligned.file" location="${out.build.dir}/${ant.project.name}-release-unaligned.apk" />
+                <property name="out.unaligned.file" location="${out.absolute.dir}/${ant.project.name}-release-unaligned.apk" />
 
                 <!-- Signs the APK -->
                 <echo level="info">Signing final apk...</echo>
@@ -1181,8 +1179,8 @@
          support emma code coverage -->
 
     <target name="-set-instrumented-mode" depends="-set-mode-check">
-        <property name="out.packaged.file" location="${out.build.dir}/${ant.project.name}-instrumented-unaligned.apk" />
-        <property name="out.final.file" location="${out.build.dir}/${ant.project.name}-instrumented.apk" />
+        <property name="out.packaged.file" location="${out.absolute.dir}/${ant.project.name}-instrumented-unaligned.apk" />
+        <property name="out.final.file" location="${out.absolute.dir}/${ant.project.name}-instrumented.apk" />
         <property name="build.is.mode.set" value="true" />
 
         <!-- whether the build is an instrumented build. -->
