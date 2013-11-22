@@ -80,9 +80,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.voxel.ad.VoxelInterstitialAd;
 import com.voxel.frozenbubble.GameView.GameThread;
 import com.voxel.sdk.VoxelSDK;
-import com.voxel.sdk.ad.VoxelPreInterstitialDialog;
 
 public class FrozenBubble extends Activity
 {
@@ -425,7 +425,7 @@ public class FrozenBubble extends Activity
 	}
 
 	public void showTestInterstitial(Context context) {
-		VoxelPreInterstitialDialog dialog = new VoxelPreInterstitialDialog(
+		VoxelInterstitialAd dialog = new VoxelInterstitialAd(
 				context);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 		dialog.setup(R.drawable.subway, "Subway Surfer");

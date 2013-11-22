@@ -14,4 +14,6 @@
     <string name="menu_editor">Level Editor</string>
     <string name="install_editor">Redirecting you to the Market to download the Frozen Bubble Level Editor...</string>
     <string name="market_missing">Cannot find Android Market! Please install Frozen Bubble Level Editor manually.</string>
+    
+    <string name="pre_dialog_play_button"></string>
 </resources>
