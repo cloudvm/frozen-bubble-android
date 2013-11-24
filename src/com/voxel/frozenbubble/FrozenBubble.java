@@ -126,11 +126,6 @@ public class FrozenBubble extends Activity
 	private static final String EDITORACTION = "org.jfedor.frozenbubble.GAME";
 	private boolean activityCustomStarted = false;
 
-	static {
-		VoxelSDK.initialize("5ae1a192-6285-4d74-918e-67e8aa7f9e1a",
-				"c99c2b47-9f7e-4e9c-8502-68f383c95445");
-	}
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
@@ -260,6 +255,9 @@ public class FrozenBubble extends Activity
 	@Override
 	public void onCreate(Bundle savedInstanceState)
 	{
+		VoxelSDK.initialize(this, "5ae1a192-6285-4d74-918e-67e8aa7f9e1a",
+				"c99c2b47-9f7e-4e9c-8502-68f383c95445");
+
 		if (savedInstanceState != null) {
 			//Log.i("frozen-bubble", "FrozenBubble.onCreate(...)");
 		} else {
